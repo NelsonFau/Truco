@@ -14,10 +14,18 @@ public class PaqueteMazoTests
         mazo.CreacionCartas();
         List<Carta> cartas = mazo.MostrarCartas();
 
-        Assert.NotNull(cartas);
         Assert.Equal(40, cartas.Count);
     }
+    [Fact]
+    public void CreacionCartas_DeberiaNoAcceptarNull()
+    {
 
+        PaqueteMazo mazo = new PaqueteMazo();
+        List<Carta> cartas = mazo.MostrarCartas();
+
+        Assert.NotNull(cartas);
+
+    }
     [Fact]
     public void CreacionCartas_NoDebeIncluir8Ni9()
     {

@@ -29,6 +29,28 @@ public class RepartidorTests
     }
 
 
+    [Theory]
+    [InlineData(3)]
+    [InlineData(5)]
+    [InlineData(2)]
+    [InlineData(1)]
+
+    public void BarajarCartas_DebeDarErrorParaLaDistribucionDeCartas(int value)
+    {
+        PaqueteMazo PaqueteMazo = new PaqueteMazo();
+        Repartidor repartidor = new Repartidor();
+        PaqueteMazo.CreacionCartas();
+        List<Carta> mazo = PaqueteMazo.MostrarCartas();
+        List<Jugador> jugadores = new List<Jugador>
+        {
+            new Jugador(),
+            new Jugador()
+        };
+
+
+        repartidor.RepartirCartas(mazo, jugadores, value);
+    }
+
     [Fact]
     public void RepartirCartas_Debe_RepartirCorrectamenteYAsignarRabon()
     {
@@ -37,8 +59,8 @@ public class RepartidorTests
 
         List<Jugador> jugadores = new List<Jugador>
         {
-            new Jugador("Jugador1"),
-            new Jugador("Jugador2")
+            new Jugador(),
+            new Jugador()
         };
 
         int cartasXJugador = 3;

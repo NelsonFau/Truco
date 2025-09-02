@@ -13,10 +13,10 @@ namespace TrucoConsola.Truco
         public string Nombre { get; set; }= string.Empty;
         public List<Carta> Cartas { get; set; } = new List<Carta>();
 
-        public Jugador(string nombre)
-        {
-            Nombre = nombre;
-        }
+        //public Jugador(string nombre)
+        //{
+        //    Nombre = nombre;
+        //}
 
         public void RecibirCartas(Carta carta)
         {
