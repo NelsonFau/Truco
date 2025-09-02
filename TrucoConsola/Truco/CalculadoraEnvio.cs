@@ -8,10 +8,9 @@ namespace TrucoConsola.Truco
 {
     public class CalculadoraEnvio
     {
-        public void CalcularEnvido()
+        public void CalcularEnvido(Rabon rabon)
         {
-            Repartidor repartidor = new Repartidor();
-            repartidor.RepartirCartas()
+           
         }
     }
 }

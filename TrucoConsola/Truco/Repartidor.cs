@@ -26,20 +26,19 @@ namespace TrucoConsola.Truco
                 foreach (var jugador in jugadores)
                 {
                     Carta carta = mazo[0];
-                    jugador.RecibirCartas(carta);
+                    jugador.ManoJugador(carta);
                     mazo.RemoveAt(0);
                 }
             }
 
-            Carta cartaRabon = mazo[0];
-            
-
+            Carta muestra = mazo[0];
             mazo.RemoveAt(0);            
-            Rabon rabon = new Rabon(cartaRabon,jugadores); 
-
+            Rabon rabon = new Rabon(muestra,jugadores);
             return rabon;
 
         }
+
+        
 
 
 

@@ -11,21 +11,22 @@ namespace TrucoConsola.Truco
     {
         public int JugadorId { get; set; }
         public string Nombre { get; set; }= string.Empty;
-        public List<Carta> Cartas { get; set; } = new List<Carta>();
+        public List<Carta> Mano { get; set; } = new List<Carta>();
+        public int Puntos { get; set; }
 
-        //public Jugador(string nombre)
-        //{
-        //    Nombre = nombre;
-        //}
-
-        public void RecibirCartas(Carta carta)
+        public Jugador(string nombre)
         {
-            Cartas.Add(carta);
+            Nombre = nombre;
+        }
+
+        public void ManoJugador(Carta carta)
+        {
+            Mano.Add(carta);
         }
 
         public List<Carta> MostrarMano()
         {
-            return Cartas;
+            return Mano;
         }
     }
 }
