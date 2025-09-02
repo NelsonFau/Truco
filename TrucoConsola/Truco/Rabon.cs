@@ -11,18 +11,33 @@ namespace TrucoConsola.Truco
     {
         public int RabonId { get; set; }
         public Carta Muestra { get; set; }
-        public String? Ganador { get; set; }
+        public List<Jugador> Jugadores { get; set; }
 
-        public Rabon(Carta muestra)
+        public Jugador? Ganador { get; set; }
+
+        public Rabon(Carta muestra, List<Jugador> jugadores)
         {
             Muestra = muestra;
+            Jugadores = jugadores;
+
         }
 
-      
-
-        public void GanadorDelRabon(string nombre)
+        public void manosDeJugadores(List<Jugador> jugadores)
         {
-            Ganador = nombre;
+            foreach (var jugador in jugadores)
+            {
+                jugador.MostrarMano();
+
+            }
+        }
+        
+        //public void guardarMano(List<Carta> mano, )
+        //{
+
+        //}
+        public void GanadorDelRabon(Jugador jugador)
+        {
+            Ganador = jugador;
         }
     }
 }

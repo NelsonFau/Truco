@@ -31,9 +31,11 @@ namespace TrucoConsola.Truco
                 }
             }
 
-            Carta cartaRabon = mazo[0]; 
+            Carta cartaRabon = mazo[0];
+            
+
             mazo.RemoveAt(0);            
-            Rabon rabon = new Rabon(cartaRabon); 
+            Rabon rabon = new Rabon(cartaRabon,jugadores); 
 
             return rabon;
 

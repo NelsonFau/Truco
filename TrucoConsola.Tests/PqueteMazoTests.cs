@@ -23,6 +23,7 @@ public class PaqueteMazoTests
         PaqueteMazo mazo = new PaqueteMazo();
         List<Carta> cartas = mazo.MostrarCartas();
 
+
         Assert.NotNull(cartas);
 
     }
