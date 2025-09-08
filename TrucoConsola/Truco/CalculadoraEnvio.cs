@@ -11,19 +11,23 @@ namespace TrucoConsola.Truco
     {
         public Dictionary<Jugador, int> CalcularEnvido(Rabon rabon)
         {
-            Dictionary<Jugador,int> resultados = new Dictionary<Jugador, int>();
+            Dictionary<Jugador, int> resultados = new Dictionary<Jugador, int>();
 
             foreach (var jugador in rabon.Jugadores)
             {
                 List<Carta> mano = jugador.Mano;
 
-                IEnumerable<IGrouping<string,Carta>> agruparXMano = mano.GroupBy((c) => c.Palo);
+                IEnumerable<IGrouping<string, Carta>> agruparXMano = mano.GroupBy((c) => c.Palo);
                 int maxEnvido = 0;
 
-                foreach(var grupo in agruparXMano)
+                foreach (var grupo in agruparXMano)
                 {
                     List<Carta> cartas = grupo.ToList();
-                    if(cartas.Count >= 2)
+                    foreach (var carta in cartas)
+                    {
+                        Console.WriteLine($"{carta.Numero}: {carta.Palo} puntos de envido");
+                    }
+                    if (cartas.Count >= 2)
                     {
                         //ordeno de mayo a menor el valor de carta del metodo ValorEnvido, y caputo las primeras 2
                         List<Carta> mejoresCartas = cartas.OrderByDescending((c) => c.ValorEnvido).Take(2).ToList();
@@ -48,3 +52,4 @@ namespace TrucoConsola.Truco
 
         }
     }
+}

@@ -17,6 +17,15 @@ namespace TrucoConsola.Cartas
             Numero = numero;
             Palo = palo;
         }
+
+        public int ValorEnvido
+        {
+            get
+            {
+                if (Numero >= 10) return 0;
+                return Numero;
+            }
+        }
     }
 }
 

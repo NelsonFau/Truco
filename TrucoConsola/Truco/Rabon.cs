@@ -22,14 +22,7 @@ namespace TrucoConsola.Truco
 
         }
 
-        public List<Carta> ManosDeJugadores(List<Jugador> jugadores)
-        {
-            foreach (var jugador in jugadores)
-            {
-                return jugador.MostrarMano();
-
-            }
-        }
+      
         
         //public void guardarMano(List<Carta> mano, )
         //{

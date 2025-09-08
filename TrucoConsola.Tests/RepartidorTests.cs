@@ -43,8 +43,8 @@ public class RepartidorTests
         List<Carta> mazo = PaqueteMazo.MostrarCartas();
         List<Jugador> jugadores = new List<Jugador>
         {
-            new Jugador(),
-            new Jugador()
+            new Jugador("pedro"),
+            new Jugador("raul")
         };
 
 
@@ -59,8 +59,8 @@ public class RepartidorTests
 
         List<Jugador> jugadores = new List<Jugador>
         {
-            new Jugador(),
-            new Jugador()
+            new Jugador("pedro"),
+            new Jugador("raul")
         };
 
         int cartasXJugador = 3;
