@@ -19,34 +19,37 @@ namespace TrucoConsola
 
         public Jugador ResultadosDelEnvido(Dictionary<Jugador, int> manos)
         {
-
             if (manos.Count != 0)
             {
 
-                Dictionary<Jugador,int> resultado = manos
-                    .OrderByDescending(m => m.Value)
-                    .ToDictionary(m => m.Key, m => m.Value);
+                List<KeyValuePair<Jugador, int>> resultado = manos.OrderByDescending(m => m.Value).ToList();
 
-                int primer = resultado.Values.ElementAt(0);
-                int segundo = resultado.Values.ElementAt(1);
 
-                Jugador jugador1 = resultado.Keys.ElementAt(0);
-                Jugador jugador2 = resultado.Keys.ElementAt(1);
+                int primer = resultado[0].Value;
+                int segundo = resultado[1].Value;
 
-                Jugador ganador;
+                Jugador jugador1 = resultado[0].Key;
+                Jugador jugador2 = resultado[1].Key;
+
                 if (primer > segundo)
                 {
-                    ganador = resultado.Keys.ElementAt(0);
-                    return ganador;
+                    return jugador1;
+                }
+                int jugador1Posicion = 0;
+                int jugador2Posicion = 0;
+
+                int posicion = 0;
+
+                foreach (var jugador in manos)
+                {
+                    if(jugador.Key == jugador1) jugador1Posicion = posicion;
+                    if(jugador.Key == jugador2) jugador2Posicion = posicion;
+                    posicion++;
+
                 }
 
-                int indexJugador1 = manos.Keys.ToList().IndexOf(jugador1);
-                int indexJugador2 = manos.Keys.ToList().IndexOf(jugador2);
-               
-                if (indexJugador1 % 2 == 0) return ganador = jugador1;
-                if (indexJugador2 % 2 == 0) return ganador = jugador2;
-
-
+                if (jugador1Posicion % 2 == 0) return jugador1;
+                if (jugador1Posicion % 2 == 0) return jugador2;
 
             }
             else
