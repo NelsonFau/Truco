@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,22 +19,35 @@ namespace TrucoConsola
 
         public Jugador ResultadosDelEnvido(Dictionary<Jugador, int> manos)
         {
-            int mayor = 0;
-            Jugador ganador = new Jugador("raul");
 
             if (manos.Count != 0)
             {
 
-                foreach (var mano in manos)
+                Dictionary<Jugador,int> resultado = manos
+                    .OrderByDescending(m => m.Value)
+                    .ToDictionary(m => m.Key, m => m.Value);
+
+                int primer = resultado.Values.ElementAt(0);
+                int segundo = resultado.Values.ElementAt(1);
+
+                Jugador jugador1 = resultado.Keys.ElementAt(0);
+                Jugador jugador2 = resultado.Keys.ElementAt(1);
+
+                Jugador ganador;
+                if (primer > segundo)
                 {
-                    if (mano.Value > mayor)
-                    {
-                        mayor = mano.Value;
-                        ganador = mano.Key;
-                    }
+                    ganador = resultado.Keys.ElementAt(0);
+                    return ganador;
                 }
 
-                return ganador;
+                int indexJugador1 = manos.Keys.ToList().IndexOf(jugador1);
+                int indexJugador2 = manos.Keys.ToList().IndexOf(jugador2);
+               
+                if (indexJugador1 % 2 == 0) return ganador = jugador1;
+                if (indexJugador2 % 2 == 0) return ganador = jugador2;
+
+
+
             }
             else
             {
