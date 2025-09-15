@@ -10,15 +10,10 @@ namespace TrucoConsola
 {
     public class JuezEnvido
     {
-        private readonly CalculadoraEnvio _calculadoraEnvido;
-
-        public JuezEnvido(CalculadoraEnvio calculadoraEnvido)
+       
+        public string ResultadosDelEnvido(Dictionary<Jugador, int> manos)
         {
-            _calculadoraEnvido = calculadoraEnvido;
-        }
-
-        public Jugador ResultadosDelEnvido(Dictionary<Jugador, int> manos)
-        {
+            string ganador;
             if (manos.Count != 0)
             {
 
@@ -30,10 +25,16 @@ namespace TrucoConsola
 
                 Jugador jugador1 = resultado[0].Key;
                 Jugador jugador2 = resultado[1].Key;
+                string mensajeJugador1 = $"el gandor es:{jugador1}";
+                string mensajeJugador2 = $"el gandor es:{jugador2}";
+
 
                 if (primer > segundo)
                 {
-                    return jugador1;
+                    Console.WriteLine(mensajeJugador1);
+                    ganador = mensajeJugador1;
+                    return ganador;
+
                 }
                 int jugador1Posicion = 0;
                 int jugador2Posicion = 0;
@@ -48,14 +49,16 @@ namespace TrucoConsola
 
                 }
 
-                if (jugador1Posicion % 2 == 0) return jugador1;
-                if (jugador1Posicion % 2 == 0) return jugador2;
+                if (jugador1Posicion % 2 == 0) return mensajeJugador1;
+                if (jugador2Posicion % 2 == 0) return mensajeJugador2;
 
             }
             else
             {
                 throw new InvalidOperationException("El diccionario está vacío.");
             }
+            return ganador = "No hay jugadores";
+
         }
     }
 }

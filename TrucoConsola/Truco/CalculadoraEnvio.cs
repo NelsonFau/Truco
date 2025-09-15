@@ -13,40 +13,47 @@ namespace TrucoConsola.Truco
         {
             Dictionary<Jugador, int> resultados = new Dictionary<Jugador, int>();
 
-            foreach (var jugador in rabon.Jugadores)
+            foreach (Jugador jugador in rabon.Jugadores)
             {
                 List<Carta> mano = jugador.Mano;
 
-                IEnumerable<IGrouping<string, Carta>> agruparXMano = mano.GroupBy((c) => c.Palo);
                 int maxEnvido = 0;
+                bool tieneFlor = false;
 
-                foreach (var grupo in agruparXMano)
+                for (int i = 0; i < mano.Count; i++)
                 {
-                    List<Carta> cartas = grupo.ToList();
-                    foreach (var carta in cartas)
+                    int iguales = 1;
+                    List<Carta> mismoPalo = new List<Carta> { mano[i] };
+
+                    for (int j = 0; j < mano.Count; j++)
                     {
-                        Console.WriteLine($"{carta.Numero}: {carta.Palo} puntos de envido");
-                    }
-                    if (cartas.Count >= 2)
-                    {
-                        //ordeno de mayo a menor el valor de carta del metodo ValorEnvido, y caputo las primeras 2
-                        List<Carta> mejoresCartas = cartas.OrderByDescending((c) => c.ValorEnvido).Take(2).ToList();
-                        int puntos = 20 + mejoresCartas.Sum((c) => c.ValorEnvido);
-                        if (puntos > maxEnvido)
+                        if (i != j && mano[i].Palo == mano[j].Palo)
                         {
-                            maxEnvido = puntos;
+                            iguales++;
+                            mismoPalo.Add(mano[j]);
                         }
+                    }
+
+                    if (iguales == 3)
+                    {
+                        tieneFlor = true;
+                        maxEnvido = 0;
+                        break;
+                    }
+                    else if (iguales == 2)
+                    {
+                        int puntos = 20 + mismoPalo.Sum(c => c.ValorEnvido(rabon.Muestra));
+                        if (puntos > maxEnvido)
+                            maxEnvido = puntos;
                     }
                     else
                     {
-                        int puntos = cartas.Max((c => c.ValorEnvido));
+                        int puntos = mano[i].ValorEnvido(rabon.Muestra);
                         if (puntos > maxEnvido)
-                        {
                             maxEnvido = puntos;
-                        }
                     }
-                    resultados[jugador] = maxEnvido;
                 }
+                resultados[jugador] = maxEnvido;
             }
             return resultados;
 

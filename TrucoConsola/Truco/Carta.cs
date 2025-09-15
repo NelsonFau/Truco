@@ -18,13 +18,35 @@ namespace TrucoConsola.Cartas
             Palo = palo;
         }
 
-        public int ValorEnvido
+        public int ValorPieza(int numero) {
+            if (numero == 2) { return 30; }
+            if (numero == 4) { return 29; }
+            if (numero == 5) { return 28; }
+            if (numero == 10 || numero == 11) { return 27; }
+            return numero;
+        }
+
+        public int ValorEnvido(Carta muestra)
         {
-            get
+            if (muestra.Palo == Palo)
             {
-                if (Numero >= 10) return 0;
-                return Numero;
+                int valor = ValorPieza(Numero);
+                if (Numero == 12)
+                {
+                    valor = ValorPieza(muestra.Numero);
+                }
+                return valor;
             }
+            return ValorCarta();
+        }
+
+
+        public int ValorCarta()
+        {
+            
+            if (Numero >= 10) return 0;
+            return Numero;
+            
         }
     }
 }
